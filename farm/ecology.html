@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KrishiDoot - Smart Farming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Rubik', sans-serif;
+    }
+    body {
+      background: linear-gradient(to right, #e6f4ea, #d8f3dc);
+      color: #1b4332;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    header, footer, .section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: fadeInDown 1s ease-out;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #1b4332;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #2d6a4f;
+    }
+    .hero {
+      text-align: center;
+      padding: 100px 20px 60px;
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0iZ5X818l1Yhrcaumpp7vRyqktD3ttZc3OQ&s') no-repeat center/cover;
+      color: white;
+      animation: fadeIn 1.5s ease-in;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+    .btn {
+      background-color: #2d6a4f;
+      border: none;
+      color: white;
+      padding: 12px 28px;
+      font-weight: bold;
+      border-radius: 25px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #40916c;
+      transform: scale(1.05);
+    }
+    .section {
+      background-color: #f0fdf4;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 128, 0, 0.1);
+      margin-bottom: 30px;
+      animation: fadeIn 1.2s ease-in;
+    }
+    .dashboard-table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    .dashboard-table th, .dashboard-table td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+    }
+    .cards {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .card {
+      flex: 1 1 30%;
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    .team-members {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .member {
+      text-align: center;
+    }
+    .member img {
+      width: 150px;
+      border-radius: 50%;
+    }
+    .footer {
+      background-color: #081c15;
+      color: #d8f3dc;
+    }
+    .footer-columns {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .footer-column {
+      margin: 20px;
+    }
+    .footer input {
+      padding: 8px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    @keyframes fadeInDown {
+      0% { transform: translateY(-30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌾 KrishiDoot</h1>
+    <nav>
+      <a href="#data">Data</a>
+      <a href="#ml">Recommendations</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+      <button class="btn">Join Us</button>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Empowering Farmers with Smart Solutions</h1>
+    <p>Analyze soil & weather data to get crop recommendations, optimize fertilizer, and save water.</p>
+    <button class="btn" onclick="document.getElementById('data').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+  </div>
+
+  <section class="section" id="data">
+    <h2 style="text-align:center">IoT + Weather Data Input</h2>
+    <div style="text-align:center; margin: 20px 0;">
+      <input type="text" id="city" placeholder="Enter your city (e.g. Delhi)" style="padding: 10px; border-radius: 8px;" />
+      <button class="btn" onclick="fetchWeatherData()">Fetch Weather</button>
+    </div>
+    <table class="dashboard-table">
+      <thead>
+        <tr>
+          <th>Moisture</th>
+          <th>Light Intensity</th>
+          <th>Electrical Conductivity</th>
+          <th>NPK (N-P-K)</th>
+          <th>Temperature</th>
+          <th>Humidity</th>
+          <th>Rainfall Prediction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input placeholder="e.g. 45%" /></td>
+          <td><input placeholder="e.g. 300 Lux" /></td>
+          <td><input placeholder="e.g. 2.3 dS/m" /></td>
+          <td><input placeholder="e.g. 80-60-40" /></td>
+          <td id="temp"><input placeholder="e.g. 80-60-40" /></td>
+          <td id="humidity"><input placeholder="e.g. 80-60-40" /></td>
+          <td id="rain"><input placeholder="e.g. 80-60-40" /></td>
+          <td><button class="btn" onclick="submitData()">Submit</button></td>
+
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" id="ml">
+    <h2 style="text-align:center">🌾 Crop Recommendations</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Recommended Crop</h3>
+        <p>Rice 🌾 — based on your soil & weather conditions.</p>
+      </div>
+      <div class="card">
+        <h3>Fertilizer Roadmap</h3>
+        <p>Apply urea in early stages, NPK-15:15:15 mid-cycle, compost at end.</p>
+      </div>
+      <div class="card">
+        <h3>Water Saving</h3>
+        <p>Drip irrigation + mulch for evaporation control.</p>
+      </div>
+    </div>
+    <div class="cards" style="margin-top: 20px;">
+      <div class="card">
+        <h3>Crop Compatibility</h3>
+        <p>Rice works well with moong dal & urad in alternate rows.</p>
+      </div>
+      <div class="card">
+        <h3>Improvement Tips</h3>
+        <p>Enhance pH with lime; enrich soil using vermicompost.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="team">
+    <h2 style="text-align:center">Meet the Team</h2>
+    <div class="team-members">
+      <div class="member">
+        <img src="https://via.placeholder.com/150" alt="Team Member" />
+        <p>Leslie Alexander</p>
+      </div>
+      <div class="member">
+        <img src="https://via.placeholder.com/150" alt="Team Member" />
+        <p>Ronald Richards</p>
+      </div>
+      <div class="member">
+        <img src="https://via.placeholder.com/150" alt="Team Member" />
+        <p>Brooklyn Simmons</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="section footer" id="contact">
+    <div class="footer-columns">
+      <div class="footer-column">
+        <h3>Services</h3>
+        <p>Soil Testing</p>
+        <p>IoT Integration</p>
+        <p>Agro Consulting</p>
+      </div>
+      <div class="footer-column">
+        <h3>Resources</h3>
+        <p>Knowledge Base</p>
+        <p>Blog</p>
+        <p>Partnerships</p>
+      </div>
+      <div class="footer-column">
+        <h3>Stay Updated</h3>
+        <input type="email" placeholder="Your email" />
+        <button class="btn">Subscribe</button>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:40px;">&copy; 2024 KrishiDoot. All rights reserved.</p>
+  </footer>
+
+  <script>
+    async function fetchWeatherData() {
+      const city = document.getElementById("city").value || "Delhi";
+      const apiKey = "YOUR_OPENWEATHER_API_KEY"; // Replace with your real key
+      const url = "https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric";
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        document.getElementById("temp").textContent = data.main.temp + "°C";
+        document.getElementById("humidity").textContent = data.main.humidity + "%";
+        document.getElementById("rain").textContent = data.rain ? (data.rain["1h"] || 0) + " mm" : "0 mm";
+      } catch (err) {
+        alert("Weather data fetch failed. Check your API key or city name.");
+        console.error(err);
+      }
+    }
+  </script>
+  <script>
+    async function submitData() {
+      const row = document.querySelector("tbody tr");
+      const inputs = row.querySelectorAll("input");
+  
+      const data = {
+        moisture: inputs[0].value,
+        light: inputs[1].value,
+        ec: inputs[2].value,
+        npk: inputs[3].value,
+        temperature: document.getElementById("temp").textContent.replace("°C", "").trim(),
+        humidity: document.getElementById("humidity").textContent.replace("%", "").trim()
+      };
+  
+      try {
+        const res = await fetch("http://localhost:5000/predict", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+  
+        const result = await res.json();
+        if (result.error) throw result.error;
+  
+        alert(Recommended Crop: ${result.crop}\nFertilizer: ${result.fertilizer}\nWater Tips: ${result.water_saving});
+      } catch (err) {
+        alert("Prediction failed: " + err);
+      }
+    }
+  </script>
+  
+</body>
+</html>
