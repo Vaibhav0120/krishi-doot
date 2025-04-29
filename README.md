@@ -1,4 +1,4 @@
-# 🌾 KrishiDoot – Smart Farming Solutions
+<h1 align="center">🌾 KrishiDoot – Smart Farming Solutions</h1>
 
 **KrishiDoot** is a smart farming web app that recommends crops using machine learning based on soil and weather conditions. It helps farmers make informed decisions for better yields and sustainable agriculture.
 
