@@ -1,7 +1,3 @@
-[Watch it live](https://krishi-doot-one.vercel.app/)
-
-To make use of predict feature you have to run backend on different terminal
-
 # 🌾 KrishiDoot – Smart Farming Solutions
 
 **KrishiDoot** is a smart farming web app that recommends crops using machine learning based on soil and weather conditions. It helps farmers make informed decisions for better yields and sustainable agriculture.
