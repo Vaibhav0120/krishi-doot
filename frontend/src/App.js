@@ -25,22 +25,8 @@ function App() {
           <Route path="/auth/forgot-password" element={<ForgotPassword />} />
 
           {/* Protected Routes */}
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/auth/profile"
-            element={
-              <PrivateRoute>
-                <Profile />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/dashboard" element={<Dashboard />}/>
+          <Route path="/auth/profile" element={<Profile />}/>
         </Routes>
       </AuthProvider>
     </Router>
